@@ -28,17 +28,21 @@ public class Main {
 
                 System.out.print("Enter Bank Account Holder Name: ");
                 String bankAccountHolderName = scanner.next();
+
+                BankAccount createdBankAccount = new BankAccount(accountNumber, bankAccountHolderName);
+
                 System.out.print("Initial Deposit? (yes/no): ");
                 String hasInitialDeposit = scanner.next();
 
                 if(hasInitialDeposit.equalsIgnoreCase("yes")){
                     System.out.print("Enter Initial Deposit Amount: ");
                     double initialDepositAmount = scanner.nextDouble();
-                    bankAccounts.add(new BankAccount(accountNumber, bankAccountHolderName, initialDepositAmount));
+                    createdBankAccount.deposit(initialDepositAmount, true);
+                    bankAccounts.add(createdBankAccount);
                     System.out.println("Account created successfully!");
                 }
                 else if(hasInitialDeposit.equalsIgnoreCase("no")){
-                    bankAccounts.add(new BankAccount(accountNumber, bankAccountHolderName));
+                    bankAccounts.add(createdBankAccount);
                     System.out.println("Account created successfully!");
                 }
                 else{
@@ -68,7 +72,7 @@ public class Main {
                 //If Bank Account is found
                 if(bankAccount != null){
                     //Display Balance of bank account
-                    System.out.println("Available Balance: " + bankAccount.getAvailableBalance());
+                    System.out.printf("Available Balance: %.2f\n", bankAccount.getAvailableBalance());
                 }
                 else{
                     System.out.println("Invalid Account Number.");
@@ -92,7 +96,7 @@ public class Main {
                     System.out.print("Enter Deposit Amount: ");
                     double depositAmount = scanner.nextDouble();
 
-                    bankAccount.deposit(depositAmount);
+                    bankAccount.deposit(depositAmount, false);
                 }
                 else{
                     System.out.println("Invalid Account Number.");
@@ -117,6 +121,7 @@ public class Main {
                     double withdrawAmount = scanner.nextDouble();
 
                     bankAccount.withdraw(withdrawAmount);
+
                 }
                 else{
                     System.out.println("Invalid Account Number.");
@@ -125,6 +130,7 @@ public class Main {
 
         }while(option != 6);
 
+        System.out.println("Thank you! ===============");
     }
 
     private static void printMenu(){
