@@ -25,6 +25,8 @@ public class BankAccount {
         }
         else{
             this.availableBalance += depositAmount;
+            System.out.println("Deposit successful for Account " + this.getAccountNumber() + " with amount " + depositAmount + ".");
+            System.out.printf("Account New Balance: %.2f", this.getAvailableBalance());
         }
     }
 
@@ -36,15 +38,18 @@ public class BankAccount {
         }
         else{
             this.availableBalance -= withdrawAmount;
+            System.out.println("Withdraw successful for Account " + this.getAccountNumber() + " with amount " + withdrawAmount + ".");
+            System.out.printf("Account New Balance: %.2f", this.getAvailableBalance());
         }
     }
 
     public void displayInformation(){
+        System.out.println("Account Information: ===============================");
         System.out.println("Account Number: " + this.getAccountNumber());
         System.out.println("Bank Account Holder Name: " + this.getBankAccountHolderName());
-        System.out.println("Available Balance: " + this.getAvailableBalance());
+        System.out.printf("Available Balance: %.2f\n", this.getAvailableBalance());
     }
-    
+
     public String getAccountNumber() {
         return accountNumber;
     }
